@@ -2,11 +2,13 @@
 import mongoose from 'mongoose';
 
 const serviceSchema = new mongoose.Schema({
-  title: { type: String, required: true },
+  title: String,
   description: String,
-  imageUrl: String,
-  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
-}, { timestamps: true });
+  image: String,
+    publicId: { type: String },
+  // store image path
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  createdAt: { type: Date, default: Date.now }
+});
 
-const Service = mongoose.model('Service', serviceSchema);
-export default Service;
+export default mongoose.model('Service', serviceSchema);

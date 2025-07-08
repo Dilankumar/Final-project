@@ -2,6 +2,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 // import userRoutes from './routes/userroutes.js';
 import authRoutes from './routes/authroutes.js';
 import themeRoutes from './routes/themeRoutes.js';
@@ -11,12 +12,13 @@ import bookingRoutes from './routes/bookingRoutes.js';
 import portfolioRoutes from './routes/portfolioRoutes.js';
 
 
+
 dotenv.config();
 const app = express();
 
 // Middleware
 app.use(express.json());
-
+app.use(cors());
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -34,6 +36,11 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 
 
+
+app.use(cors({
+  origin: 'http://localhost:5173', // frontend URL
+  credentials: true, // cookies use pannina this is needed
+}));
 
 
 // Start server

@@ -1,4 +1,4 @@
-// middlewares/adminMiddleware.js
+
 
 export const isAdmin = (req, res, next) => {
     // Check if user exists and has admin role
@@ -8,4 +8,7 @@ export const isAdmin = (req, res, next) => {
       res.status(403).json({ message: 'Access denied: Admins only' });
     }
   };
+
+
+  
   

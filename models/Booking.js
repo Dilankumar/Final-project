@@ -1,15 +1,35 @@
 import mongoose from 'mongoose';
 
+
 const bookingSchema = new mongoose.Schema({
-  studioName: { type: String, required: true },
-  fullName: { type: String, required: true },
-  email: { type: String, required: true },
-  address: { type: String, required: true },
-  theme: { type: String, required: true },
-  reference: { type: String }, // text input reference
-  referenceImage: { type: String }, // image URL/path
-  timeSlot: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+  studioName: String,
+  fullName: String,
+  email: String,
+  address: String,
+  theme: String,
+  reference: String,
+  referenceImage: { type: String }, // Cloudinary image URL
+referenceImageId: { type: String },
+  additionalNotes: String,
+  status: {
+    type: String,
+    enum: ['pending', 'accepted', 'declined'],
+    default: 'pending'
+  },
+  adminMessage: String,
+  createdAt: { type: Date, default: Date.now },
+  date: { type: Date, required: true },  // This is the new field
+  meetLink: { type: String },
+
+  
 });
 
-export default mongoose.model('Booking', bookingSchema);
+const Booking = mongoose.model('Booking', bookingSchema);
+
+// sessionDate: {
+//   type: Date,
+//   default: null,
+// },
+
+
+export default Booking;

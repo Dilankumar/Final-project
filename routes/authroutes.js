@@ -10,10 +10,13 @@ router.post('/register', registerUser);
 // Login route
 router.post('/login', loginUser);
 
-// Admin-only routes (protected by authentication middleware)
-router.get('/users', authenticate, viewAllUsers); // Get all users
-router.get('/users/:id', authenticate, viewUserById); // Get user by ID
-router.put('/users/:id', authenticate, updateUser); // Update user
-router.delete('/users/:id', authenticate, deleteUser); // Delete user
 
+
+
+//  Logout route – Client can call this to clear localStorage token
+// router.post('/logout', (req, res) => {
+//     // No actual token removal from server, but client clears it
+//     res.status(200).json({ message: 'Logged out successfully' });
+//   });
+  
 export default router;
